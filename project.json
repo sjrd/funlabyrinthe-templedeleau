@@ -1,5 +1,7 @@
 {
   "modules": [
-    "com.funlabyrinthe.mazes.Mazes"
+    "com.funlabyrinthe.core.AdditionalComponents",
+    "com.funlabyrinthe.mazes.Mazes",
+    "user.sjrd.templedeleau.PlayerLifeManagement"
   ]
 }

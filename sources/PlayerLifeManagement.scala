@@ -1,0 +1,80 @@
+package user.sjrd.templedeleau
+
+import com.funlabyrinthe.core.*
+import com.funlabyrinthe.mazes.*
+import com.funlabyrinthe.mazes.std.*
+
+object PlayerLifeManagement extends Module {
+  override def startGame()(using Universe): Unit =
+    lifePlugin.startGame()
+}
+
+@definition def lifePlugin(using Universe) = new LifePlugin
+@definition def circleHolePlugin(using Universe) = new CircleHolePlugin
+@definition def fallInWaterPlugin(using Universe) = new FallInWaterPlugin
+
+class LifePlugin(using ComponentInit) extends PlayerPlugin {
+  icon += "BodyParts/Heart"
+
+  @noinspect
+  var revivePos: Option[SquareRef] = None
+
+  def startGame(): Unit =
+    revivePos = universe.players.head.reified[Player].position
+
+  override def moved(context: MoveContext): Unit = {
+    import context.*
+    (src, dest) match
+      case (Some(s), Some(d)) if zoneOf(s) == zoneOf(d) =>
+        ()
+      case _ =>
+        revivePos = dest
+  }
+
+  private def zoneOf(ref: SquareRef): Position = {
+    Position(Math.floorDiv(ref.x, ref.map.zoneWidth),
+        Math.floorDiv(ref.y, ref.map.zoneHeight), 1)
+  }
+
+  def lightRevive(player: Player): Unit = {
+    player.position = revivePos
+    for _ <- 0 to 5 do
+      player.hide()
+      player.sleep(100)
+      player.show()
+      player.sleep(100)
+  }
+}
+
+class CircleHolePlugin(using ComponentInit) extends PlayerPlugin {
+  icon += "Holes/CircleHole"
+  painterAbove += "Holes/CircleHole"
+}
+
+class FallInWaterPlugin(using ComponentInit) extends PlayerPlugin {
+  icon += "Fields/Water"
+  icon += "Holes/CircleHole"
+
+  var didGoOnWater: Boolean = false
+
+  override def perform(player: CorePlayer): CorePlayer.Perform = {
+    case GoOnWater =>
+      didGoOnWater = true
+  }
+
+  override def moving(context: MoveContext): Unit = {
+    import context.*
+    if player has buoys then
+      player.plugins -= this
+  }
+
+  override def moved(context: MoveContext): Unit = {
+    import context.*
+    if didGoOnWater then
+      didGoOnWater = false
+      player.plugins += circleHolePlugin
+      temporize()
+      player.plugins -= circleHolePlugin
+      lifePlugin.lightRevive(player)
+  }
+}
