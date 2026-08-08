@@ -4,10 +4,7 @@ import com.funlabyrinthe.core.*
 import com.funlabyrinthe.mazes.*
 import com.funlabyrinthe.mazes.std.*
 
-object PlayerLifeManagement extends Module {
-  override def startGame()(using Universe): Unit =
-    lifePlugin.startGame()
-}
+object PlayerLifeManagement extends Module
 
 @definition def lifePlugin(using Universe) = new LifePlugin
 @definition def circleHolePlugin(using Universe) = new CircleHolePlugin
@@ -19,21 +16,16 @@ class LifePlugin(using ComponentInit) extends PlayerPlugin {
   @noinspect
   var revivePos: Option[SquareRef] = None
 
-  def startGame(): Unit =
+  override protected def startGame(): Unit =
     revivePos = universe.players.head.reified[Player].position
 
   override def moved(context: MoveContext): Unit = {
     import context.*
     (src, dest) match
-      case (Some(s), Some(d)) if zoneOf(s) == zoneOf(d) =>
+      case (Some(s), Some(d)) if s.zone == d.zone && s.map == d.map =>
         ()
       case _ =>
         revivePos = dest
-  }
-
-  private def zoneOf(ref: SquareRef): Position = {
-    Position(Math.floorDiv(ref.x, ref.map.zoneWidth),
-        Math.floorDiv(ref.y, ref.map.zoneHeight), 1)
   }
 
   def lightRevive(player: Player): Unit = {

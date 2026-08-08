@@ -1,7 +1,15 @@
 {
+  "dependencies": [
+    "funlaby:sjrd/chests/local-current",
+    "funlaby:sjrd/movableblocks/local-current",
+    "funlaby:sjrd/underwater/local-current"
+  ],
   "modules": [
     "com.funlabyrinthe.core.AdditionalComponents",
     "com.funlabyrinthe.mazes.Mazes",
+    "user.sjrd.chests.Chests",
+    "user.sjrd.movableblocks.MovableBlocks",
+    "user.sjrd.underwater.Underwater",
     "user.sjrd.templedeleau.PlayerLifeManagement"
   ]
 }

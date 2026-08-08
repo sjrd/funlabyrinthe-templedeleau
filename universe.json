@@ -2,6 +2,7 @@
   "players": [ "player", ],
   "additionalComponents": {
     "map1": "com.funlabyrinthe.mazes.Map",
+    "movableBlock1": "user.sjrd.movableblocks.MovableBlock",
   },
   "components": {
     "com.funlabyrinthe.core.Core:player:com.funlabyrinthe.mazes.Player": {
@@ -151,6 +152,15 @@
       "zoneWidth": 13,
       "zoneHeight": 9,
       "viewBorderSize": 0,
+    },
+    "com.funlabyrinthe.core.AdditionalComponents:movableBlock1": {
+      "editVisualTag": "1",
+      "position": [
+        [
+          "com.funlabyrinthe.core.AdditionalComponents:map1",
+          [ 16, 22, 3, ],
+        ],
+      ],
     },
     "com.funlabyrinthe.core.Core:player": {
       "plugins": [ "user.sjrd.templedeleau.PlayerLifeManagement:fallInWaterPlugin", "user.sjrd.templedeleau.PlayerLifeManagement:lifePlugin", ],
