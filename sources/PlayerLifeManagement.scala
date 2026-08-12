@@ -19,13 +19,13 @@ class LifePlugin(using ComponentInit) extends PlayerPlugin {
   override protected def startGame(): Unit =
     revivePos = universe.players.head.reified[Player].position
 
-  override def moved(context: MoveContext): Unit = {
+  override def entered(context: EnteredContext): Unit = {
     import context.*
-    (src, dest) match
-      case (Some(s), Some(d)) if s.zone == d.zone && s.map == d.map =>
+    optSrc match
+      case Some(src) if src.zone == pos.zone && src.map == pos.map =>
         ()
       case _ =>
-        revivePos = dest
+        revivePos = Some(pos)
   }
 
   def lightRevive(player: Player): Unit = {
@@ -54,13 +54,13 @@ class FallInWaterPlugin(using ComponentInit) extends PlayerPlugin {
       didGoOnWater = true
   }
 
-  override def moving(context: MoveContext): Unit = {
+  override def exiting(context: ExitingContext): Unit = {
     import context.*
     if player has buoys then
       player.plugins -= this
   }
 
-  override def moved(context: MoveContext): Unit = {
+  override def entered(context: EnteredContext): Unit = {
     import context.*
     if didGoOnWater then
       didGoOnWater = false
