@@ -1,6 +1,7 @@
 package user.sjrd.templedeleau
 
 import com.funlabyrinthe.core.*
+import com.funlabyrinthe.core.sounds.Sound
 import com.funlabyrinthe.mazes.*
 import com.funlabyrinthe.mazes.std.*
 
@@ -47,6 +48,9 @@ class FallInWaterPlugin(using ComponentInit) extends PlayerPlugin {
   icon += "Fields/Water"
   icon += "Holes/CircleHole"
 
+  var sound: Sound = Sound("Plouf")
+
+  @noinspect
   var didGoOnWater: Boolean = false
 
   override def perform(player: CorePlayer): CorePlayer.Perform = {
@@ -64,6 +68,7 @@ class FallInWaterPlugin(using ComponentInit) extends PlayerPlugin {
     import context.*
     if didGoOnWater then
       didGoOnWater = false
+      player.playSound(sound)
       player.plugins += circleHolePlugin
       temporize()
       player.plugins -= circleHolePlugin

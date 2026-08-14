@@ -2,6 +2,7 @@ package user.sjrd.templedeleau
 
 import com.funlabyrinthe.core.*
 import com.funlabyrinthe.core.scene.*
+import com.funlabyrinthe.core.sounds.*
 import com.funlabyrinthe.mazes.*
 import com.funlabyrinthe.mazes.std.*
 
@@ -23,14 +24,14 @@ class FlowingWaterInfos(using ComponentInit) extends Component {
   category = CatFloorFlowingWater
 
   var waterFloor: Int = 2
+  var rushingWaterSound: Sound = Sound("RushingWater")
 
   def setWaterFloor(value: Int): Unit = {
     if waterFloor == value then
       return
 
-    // TODO sound
-    //for I := 0 to Master.PlayerCount-1 do
-    //  Master.Players[I].PlaySound('RushingWater.wav');
+    for player <- universe.players do
+      player.playSound(rushingWaterSound)
 
     waterFloor = value
 
