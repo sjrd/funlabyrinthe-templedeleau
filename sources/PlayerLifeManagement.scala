@@ -48,8 +48,6 @@ class FallInWaterPlugin(using ComponentInit) extends PlayerPlugin {
   icon += "Fields/Water"
   icon += "Holes/CircleHole"
 
-  var sound: Sound = Sound("Plouf")
-
   @noinspect
   var didGoOnWater: Boolean = false
 
@@ -68,7 +66,7 @@ class FallInWaterPlugin(using ComponentInit) extends PlayerPlugin {
     import context.*
     if didGoOnWater then
       didGoOnWater = false
-      player.playSound(sound)
+      player.playSound(wtSounds.fallInWater)
       player.plugins += circleHolePlugin
       temporize()
       player.plugins -= circleHolePlugin

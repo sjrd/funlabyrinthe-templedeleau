@@ -10,6 +10,7 @@
     "user.sjrd.chests.Chests",
     "user.sjrd.movableblocks.MovableBlocks",
     "user.sjrd.underwater.Underwater",
+    "user.sjrd.templedeleau.WTSounds",
     "user.sjrd.templedeleau.FloorFlowingWater",
     "user.sjrd.templedeleau.PlayerLifeManagement",
     "user.sjrd.templedeleau.WTMovableBlocks"

@@ -24,14 +24,13 @@ class FlowingWaterInfos(using ComponentInit) extends Component {
   category = CatFloorFlowingWater
 
   var waterFloor: Int = 2
-  var rushingWaterSound: Sound = Sound("RushingWater")
 
   def setWaterFloor(value: Int): Unit = {
     if waterFloor == value then
       return
 
     for player <- universe.players do
-      player.playSound(rushingWaterSound)
+      player.playSound(wtSounds.rushingWater)
 
     waterFloor = value
 

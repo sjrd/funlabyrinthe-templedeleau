@@ -51,6 +51,7 @@ class WTMovableBlockPuzzle1(using ComponentInit) extends WTMovableBlock {
     super.applyMove(context, target)
     fixThere()
     context.map(19, 18, 3) = grass
+    context.player.playSound(wtSounds.success)
   }
 }
 
@@ -61,5 +62,6 @@ class WTMovableBlockKeyPuzzle(using ComponentInit) extends WTMovableBlock {
     super.applyMove(context, target)
     fixThere()
     context.map(48, 13, 2) += silverKey
+    context.player.playSound(wtSounds.success)
   }
 }
