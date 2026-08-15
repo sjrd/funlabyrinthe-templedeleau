@@ -4,6 +4,7 @@
     "changeWaterFloorButton1": "user.sjrd.templedeleau.ChangeWaterFloorButton",
     "changeWaterFloorButton2": "user.sjrd.templedeleau.ChangeWaterFloorButton",
     "changeWaterFloorButton3": "user.sjrd.templedeleau.ChangeWaterFloorButton",
+    "elevator1": "user.sjrd.elevators.Elevator",
     "fixedBlock": "com.funlabyrinthe.mazes.generic.SimpleObstacle",
     "map1": "com.funlabyrinthe.mazes.Map",
     "movableBlock_1_1_3_a": "user.sjrd.movableblocks.MovableBlock",
@@ -49,6 +50,15 @@
     },
     "user.sjrd.templedeleau.OneWayDoors:eastOneWayDoor": {
       "openField": [ "com.funlabyrinthe.mazes.Mazes:grass", ],
+    },
+    "com.funlabyrinthe.core.AdditionalComponents:elevator1": {
+      "editVisualTag": "1",
+      "position": [
+        [
+          "com.funlabyrinthe.core.AdditionalComponents:map1",
+          [ 41, 25, 2, ],
+        ],
+      ],
     },
     "com.funlabyrinthe.core.AdditionalComponents:fixedBlock": {
       "painter": [

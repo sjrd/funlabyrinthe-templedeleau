@@ -1,6 +1,7 @@
 {
   "dependencies": [
     "funlaby:sjrd/chests/local-current",
+    "funlaby:sjrd/elevators/local-current",
     "funlaby:sjrd/movableblocks/local-current",
     "funlaby:sjrd/underwater/local-current"
   ],
@@ -8,6 +9,7 @@
     "com.funlabyrinthe.core.AdditionalComponents",
     "com.funlabyrinthe.mazes.Mazes",
     "user.sjrd.chests.Chests",
+    "user.sjrd.elevators.Elevators",
     "user.sjrd.movableblocks.MovableBlocks",
     "user.sjrd.underwater.Underwater",
     "user.sjrd.templedeleau.DualBlocks",
