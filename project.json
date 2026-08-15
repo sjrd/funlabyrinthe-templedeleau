@@ -5,6 +5,7 @@
     "funlaby:sjrd/mapzones/local-current",
     "funlaby:sjrd/movableblocks/local-current",
     "funlaby:sjrd/movingfloors/local-current",
+    "funlaby:sjrd/stopwatches/local-current",
     "funlaby:sjrd/underwater/local-current"
   ],
   "modules": [
@@ -15,6 +16,8 @@
     "user.sjrd.mapzones.MapZones",
     "user.sjrd.movableblocks.MovableBlocks",
     "user.sjrd.movingfloors.MovingFloors",
+    "user.sjrd.stopwatches.Stopwatches",
+    "user.sjrd.gaugedisplay.GaugeDisplay",
     "user.sjrd.underwater.Underwater",
     "user.sjrd.templedeleau.WTSounds",
     "user.sjrd.templedeleau.PlayerLifeManagement",
@@ -22,6 +25,7 @@
     "user.sjrd.templedeleau.DualBlocks",
     "user.sjrd.templedeleau.FloorFlowingWater",
     "user.sjrd.templedeleau.MemoryRiddles",
+    "user.sjrd.templedeleau.TimerRiddles",
     "user.sjrd.templedeleau.WTMovableBlocks",
     "user.sjrd.templedeleau.OneWayDoors"
   ]
