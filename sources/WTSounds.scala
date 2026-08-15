@@ -15,4 +15,5 @@ class WTSounds(using ComponentInit) extends Component {
   var rushingWater = Sound("RushingWater")
   var closeOneWayDoor = Sound("CloseOneWayDoor")
   var openChest = Sound("OpenChest")
+  var dive = Sound("Dive")
 }
