@@ -27,6 +27,9 @@
     "platformWall7": "user.sjrd.templedeleau.PlatformWall",
     "platformWall8": "user.sjrd.templedeleau.PlatformWall",
     "platformWall9": "user.sjrd.templedeleau.PlatformWall",
+    "wtMovableBlock1": "user.sjrd.templedeleau.WTMovableBlock",
+    "wtMovableBlock2": "user.sjrd.templedeleau.WTMovableBlock",
+    "wtMovableBlock3": "user.sjrd.templedeleau.WTMovableBlock",
   },
   "components": {
     "com.funlabyrinthe.core.AdditionalComponents:changeWaterFloorButton1": {
@@ -206,9 +209,9 @@
             [ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 5, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 8, 8, 8, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, ],
             [ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 8, 8, 8, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, ],
             [ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 8, 1, 1, 8, 1, 8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, ],
-            [ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 8, 8, 1, 8, 8, 1, 1, 1, 1, 8, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, ],
-            [ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 0, 0, 8, 8, 1, 1, 1, 1, 1, 1, 8, 8, 1, 0, 0, 3, 3, 1, 1, 1, 1, 1, 1, 3, 3, 3, 0, ],
-            [ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 3, 3, 1, 1, 1, 1, 1, 1, 3, 3, 3, 0, ],
+            [ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 8, 8, 1, 8, 8, 1, 1, 1, 1, 8, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 3, 0, ],
+            [ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 5, 1, 1, 1, 1, 1, 5, 1, 1, 0, 0, 8, 8, 1, 1, 1, 1, 1, 1, 8, 8, 1, 0, 0, 3, 3, 1, 1, 1, 0, 1, 1, 3, 3, 3, 0, ],
+            [ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 3, 3, 1, 1, 1, 0, 1, 1, 3, 3, 3, 0, ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ],
           ],
         ],
@@ -394,7 +397,7 @@
       ],
     },
     "com.funlabyrinthe.core.Core:player": {
-      "plugins": [ "user.sjrd.templedeleau.PlayerLifeManagement:fallInWaterPlugin", "user.sjrd.templedeleau.PlayerLifeManagement:lifePlugin", ],
+      "plugins": [ "user.sjrd.templedeleau.PlayerLifeManagement:fallInWaterPlugin", "user.sjrd.templedeleau.PlayerLifeManagement:lifePlugin", "user.sjrd.templedeleau.WTMovableBlocks:wtResetBlocksPlugin", ],
     },
     "user.sjrd.templedeleau.OneWayDoors:southOneWayDoor": {
       "openField": [ "com.funlabyrinthe.mazes.Mazes:grass", ],
@@ -415,6 +418,33 @@
     },
     "user.sjrd.templedeleau.OneWayDoors:westOneWayDoor": {
       "openField": [ "com.funlabyrinthe.mazes.Mazes:grass", ],
+    },
+    "com.funlabyrinthe.core.AdditionalComponents:wtMovableBlock1": {
+      "editVisualTag": "!1",
+      "position": [
+        [
+          "com.funlabyrinthe.core.AdditionalComponents:map1",
+          [ 42, 23, 3, ],
+        ],
+      ],
+    },
+    "com.funlabyrinthe.core.AdditionalComponents:wtMovableBlock2": {
+      "editVisualTag": "!2",
+      "position": [
+        [
+          "com.funlabyrinthe.core.AdditionalComponents:map1",
+          [ 43, 23, 3, ],
+        ],
+      ],
+    },
+    "com.funlabyrinthe.core.AdditionalComponents:wtMovableBlock3": {
+      "editVisualTag": "!3",
+      "position": [
+        [
+          "com.funlabyrinthe.core.AdditionalComponents:map1",
+          [ 44, 23, 3, ],
+        ],
+      ],
     },
     "user.sjrd.templedeleau.WTMovableBlocks:wtMovableBlockKeyPuzzle": {
       "editVisualTag": "clef",

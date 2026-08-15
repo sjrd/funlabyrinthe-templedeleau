@@ -13,6 +13,8 @@ object WTMovableBlocks extends Module
 @definition def wtMovableBlockPuzzle1(using Universe) = WTMovableBlockPuzzle1()
 @definition def wtMovableBlockKeyPuzzle(using Universe) = WTMovableBlockKeyPuzzle()
 
+@definition def wtResetBlocksPlugin(using Universe) = WTResetBlocksPlugin()
+
 class WTMovableBlock(using ComponentInit) extends ConstrainedMovableBlock {
   painter = painter.empty + "Blocks/SquareBlock"
   maximumMoveCount = 1
@@ -63,5 +65,15 @@ class WTMovableBlockKeyPuzzle(using ComponentInit) extends WTMovableBlock {
     fixThere()
     context.map(48, 13, 2) += silverKey
     context.player.playSound(wtSounds.success)
+  }
+}
+
+class WTResetBlocksPlugin(using ComponentInit) extends PlayerPlugin {
+  override def entered(context: EnteredContext): Unit = {
+    import context.*
+    if !optSrc.exists(_.zone == pos.zone) then
+      // We changed zones; reset all blocks
+      for block <- universe.components[WTMovableBlock] do
+        block.reset()
   }
 }
