@@ -20,8 +20,8 @@ class WTMovableBlock(using ComponentInit) extends ConstrainedMovableBlock {
   maximumMoveCount = 1
 
   override protected def isDestSquareValid(square: Square): Boolean = square match
-    case Square(_: Ground, e, t, o) => e.isEmpty && t.isEmpty && o.isEmpty
-    case _                          => false
+    case Square(_:Ground | _:WaterFlowingHole, e, t, o) => t.isEmpty && o.isEmpty
+    case _                                              => false
 
   override protected def isMoveAllowed(context: EnteringContext, target: SquareRef): Boolean = {
     import context.*
