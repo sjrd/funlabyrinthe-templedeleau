@@ -8,7 +8,12 @@ import user.sjrd.chests.*
 
 object WTMiscellaneous extends Module
 
+@definition def woodFloor(using Universe) = WoodFloor()
 @definition def closedTreasure(using Universe) = ClosedTreasure()
+
+class WoodFloor(using ComponentInit) extends Field {
+  painter += "Fields/WoodFloor"
+}
 
 class ClosedTreasure(using ComponentInit) extends ClosedChest {
   override def pushing(context: EnteringContext): Unit = {
