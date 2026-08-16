@@ -15,6 +15,17 @@ object WTMovableBlocks extends Module
 
 @definition def wtResetBlocksPlugin(using Universe) = WTResetBlocksPlugin()
 
+def ensureNotUnderwaterToPushBlock(player: Player, pos: SquareRef)(using Universe): Boolean = {
+  if flowingWaterInfos.waterFloor > pos.z then
+    player.showMessageOnce(
+      "Sous l'eau, tu n'as pas de point d'appui. "
+        + "Tu ne peux donc pas pousser les blocs."
+    )
+    false
+  else
+    true
+}
+
 class WTMovableBlock(using ComponentInit) extends ConstrainedMovableBlock {
   painter = painter.empty + "Blocks/SquareBlock"
   maximumMoveCount = 1
@@ -26,16 +37,8 @@ class WTMovableBlock(using ComponentInit) extends ConstrainedMovableBlock {
   override protected def isMoveAllowed(context: EnteringContext, target: SquareRef): Boolean = {
     import context.*
 
-    super.isMoveAllowed(context, target) && {
-      if flowingWaterInfos.waterFloor > pos.z then
-        player.showMessageOnce(
-          "Sous l'eau, tu n'as pas de point d'appui. "
-            + "Tu ne peux donc pas pousser les blocs."
-        )
-        false
-      else
-        true
-    }
+    super.isMoveAllowed(context, target)
+      && ensureNotUnderwaterToPushBlock(player, pos)
   }
 
   override protected def applyMove(context: EnteringContext, target: SquareRef): Unit = {

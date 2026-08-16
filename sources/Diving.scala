@@ -2,6 +2,7 @@ package user.sjrd.templedeleau
 
 import com.funlabyrinthe.core.*
 import com.funlabyrinthe.core.input.*
+import com.funlabyrinthe.core.scene.*
 import com.funlabyrinthe.core.pickling.Pickleable
 import com.funlabyrinthe.core.inspecting.Inspectable
 import com.funlabyrinthe.mazes.*
@@ -21,6 +22,7 @@ def CatDiving(using Universe) = ComponentCategory("diving", "Diving")
 
 @definition def diveManagementPlugin(using Universe) = DiveManagementPlugin()
 @definition def breathingStopwatch(using Universe) = BreathingStopwatch()
+@definition def airBubbles(using Universe) = AirBubbles()
 @definition def flippers(using Universe) = Flippers()
 @definition def scubaTanks(using Universe) = ScubaTanks()
 
@@ -126,6 +128,27 @@ class BreathingStopwatch(using ComponentInit) extends Stopwatch {
       }
     }
   }
+}
+
+class AirBubbles(using ComponentInit) extends Effect {
+  category = CatDiving
+  painter += "Miscellaneous/AirBubbles"
+
+  // don't display the bubbles if they are above awater
+  override def doPresent(context: PresentSquareContext): Batch[SceneNode] =
+    import context.*
+    if universe.isEditing || pos.forall(_.z < flowingWaterInfos.waterFloor) then
+      super.doPresent(context)
+    else
+      Batch.empty
+
+  override def entered(context: EnteredContext): Unit =
+    breathingStopwatch.stop(context.player.corePlayer)
+
+  override def exited(context: ExitedContext): Unit =
+    import context.*
+    if (player cannot BreatheUnderwater) && pos.z < flowingWaterInfos.waterFloor then
+      breathingStopwatch.start(player.corePlayer, diveManagementPlugin.breathingTime)
 }
 
 class Flippers(using ComponentInit) extends ItemDef {

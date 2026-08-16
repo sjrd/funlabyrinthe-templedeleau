@@ -16,4 +16,5 @@ class WTSounds(using ComponentInit) extends Component {
   var closeOneWayDoor = Sound("CloseOneWayDoor")
   var openChest = Sound("OpenChest")
   var dive = Sound("Dive")
+  var boulderLanding = Sound("BoulderLanding")
 }
